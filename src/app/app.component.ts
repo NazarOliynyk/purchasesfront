@@ -1,10 +1,22 @@
 import { Component } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
-  title = 'purchasesFront';
+
+  constructor( private router: Router) { }
+  signIn() {
+    this.router.navigate(['register']);
+  }
+
+  logIn() {
+    this.router.navigate(['login']);
+  }
+
+
 }
