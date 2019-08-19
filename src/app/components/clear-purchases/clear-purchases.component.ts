@@ -12,17 +12,21 @@ import {MainServiceService} from '../../services/main-service.service';
 })
 export class ClearPurchasesComponent implements OnInit {
 
-
+  modal;
   user: User;
   headersOption: HttpHeaders;
   dateToDelete: Date;
   responseTransfer: ResponseTransfer = new ResponseTransfer();
   showForm = false;
+  responseOnDelete = '';
+  deleteAnywayBTN = true;
 
   constructor(private activatedRoute: ActivatedRoute,
               private mainService: MainServiceService) { }
 
   ngOnInit(): void {
+
+    this.modal = document.getElementById('modalMessage1');
 
     if (localStorage.getItem('_token') !== null ) {
       this.headersOption =
@@ -35,15 +39,30 @@ export class ClearPurchasesComponent implements OnInit {
     }
   }
 
-  deletePurchases(dateToDeleteForm) {
-    if (confirm('DO YOU REALLY WANT TO DELETE YOUR purchases of: ' + this.dateToDelete.toString() + '???')) {
-
-      this.responseTransfer.date = this.dateToDelete;
-      this.mainService.deleteByDate(this.user, this.responseTransfer, this.headersOption).
-      subscribe(value => { alert(value.text); },
-        error1 => {console.log(error1);
-                   alert('Failed to delete'); });
-
-    }
+  deletePurchase(dateToDeleteForm) {
+    this.deleteAnywayBTN = true;
+    this.responseOnDelete = 'DO YOU REALLY WANT TO DELETE YOUR purchases of: '
+      + this.dateToDelete.toString() + '???';
+    this.modal.style.display = 'block';
   }
+
+  closeModal() {
+    this.modal.style.display = 'none';
+  }
+
+  deleteAnyway() {
+        this.responseTransfer.date = this.dateToDelete;
+        this.mainService.deleteByDate(this.user, this.responseTransfer, this.headersOption).
+        subscribe(value => {
+            this.modal.style.display = 'block';
+            this.responseOnDelete = value.text;
+            this.deleteAnywayBTN = false;
+          },
+          error1 => {console.log(error1);
+                     this.modal.style.display = 'block';
+                     this.responseOnDelete = 'Failed to delete';
+                     this.deleteAnywayBTN = false;
+        });
+  }
+
 }

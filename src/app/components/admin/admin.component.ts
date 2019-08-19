@@ -10,15 +10,18 @@ import {MainServiceService} from '../../services/main-service.service';
 })
 export class AdminComponent implements OnInit {
 
+  modal;
   user: User;
   users: User [];
   headersOption: HttpHeaders;
   show = false;
+  userToDelete: User;
 
   constructor( private mainService: MainServiceService) { }
 
   ngOnInit(): void {
 
+    this.modal = document.getElementById('modalMessage');
     if (localStorage.getItem('_token') !== null ) {
       this.user = JSON.parse(localStorage.getItem('_userLogged'));
       if (this.user.username === 'admin') {
@@ -36,16 +39,25 @@ export class AdminComponent implements OnInit {
       error1 => alert('Failed to load users'));
   }
 
-  delete(u: User) {
-    if (confirm('DO YOU REALLY WANT TO DELETE the ACCOUNT of: ' + u.username + '???')) {
 
-      this.mainService.deleteUser(u, this.headersOption).
-      subscribe(data => {
-          alert(data.text);
-          this.getUsers();
-        },
-        err => {console.log('err: ' + err.toString());
-                alert('Failed to delete!'); } );
-    }
+  deleteUser(u: User) {
+    this.userToDelete = u;
+    this.modal.style.display = 'block';
   }
+  closeModal() {
+    this.modal.style.display = 'none';
+  }
+
+  deleteAnyway() {
+
+        this.mainService.deleteUser(this.userToDelete, this.headersOption).
+        subscribe(data => {
+            // alert(data.text);
+            this.modal.style.display = 'none';
+            this.getUsers();
+          },
+          err => {console.log('err: ' + err.toString());
+                  alert('Failed to delete!'); } );
+  }
+
 }

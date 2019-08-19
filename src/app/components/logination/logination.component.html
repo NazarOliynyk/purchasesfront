@@ -23,15 +23,23 @@
              required minlength="4" maxlength="10"
              name="password" placeholder="password" size="10"></label><br>
 
-
-    <button [disabled]="loginForm.invalid"
+    <button [disabled]="loginForm.invalid" class="btn btn-success"
             (click)="logInto(loginForm)" type="button">Log In</button>
 
   </form>
 
 </div>
 
-<h3 style="color: indigo">{{responseLogination}}</h3>
+<div id="modalMessage" class="modal">
+  <div class="modal-response">
+    <div>
+      <h3>Server responded:</h3>
+      <hr>
+      <h3>{{responseLogination}}</h3>
+    </div>
+    <button class="btn btn-info" (click)="closeModal()">Close</button>
+  </div>
+</div>
 
 
 <router-outlet></router-outlet>

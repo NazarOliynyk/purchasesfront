@@ -11,6 +11,7 @@ import {User} from '../../models/User';
 })
 export class PurchasesComponent implements OnInit {
 
+  modal;
   user: User;
   headersOption: HttpHeaders;
   showDeleteUserButton = true;
@@ -21,6 +22,7 @@ export class PurchasesComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.modal = document.getElementById('modalMessage');
     if (localStorage.getItem('_token') !== null ) {
       this.headersOption =
         new HttpHeaders({Authorization: localStorage.getItem('_token')});
@@ -47,15 +49,20 @@ export class PurchasesComponent implements OnInit {
   }
 
   deleteAccount() {
-    if (confirm('DO YOU REALLY WANT TO DELETE YOUR ACCOUNT???')) {
+    this.modal.style.display = 'block';
+  }
 
-      this.mainService.deleteUser(this.user, this.headersOption).
-      subscribe(data => {
-          alert(data.text);
-          this.router.navigate(['login']);
-        },
-        err => {console.log('err: ' + err.toString());
-                alert('Failed to delete!'); } );
-    }
+  closeModal() {
+    this.modal.style.display = 'none';
+  }
+
+  deleteAnyway() {
+        this.mainService.deleteUser(this.user, this.headersOption).
+        subscribe(data => {
+            alert(data.text);
+            this.router.navigate(['register']);
+          },
+          err => {console.log('err: ' + err.toString());
+                  alert('Failed to delete!'); } );
   }
 }

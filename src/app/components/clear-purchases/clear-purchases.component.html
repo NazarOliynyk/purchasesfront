@@ -2,7 +2,7 @@
 
 <div class="clearForm" *ngIf="showForm">
   <form #dateToDeleteForm="ngForm">
-    <h3 style="color: snow">Clear:</h3>
+    <h3 style="color: snow">Delete form:</h3>
     <label>Date:<br>
       <input class="form-control"
              [(ngModel)]="dateToDelete" type="date"
@@ -14,8 +14,19 @@
              name="dateToDelete" ></label><br>
 
     <button [disabled]="dateToDeleteForm.invalid"
-            (click)="deletePurchases(dateToDeleteForm)" type="button">Clear</button>
+            (click)="deletePurchase(dateToDeleteForm)" type="button">Delete</button>
   </form>
+</div>
+
+<div id="modalMessage1" class="modal">
+  <div class="modal-response">
+    <div>
+      <h3>{{responseOnDelete}}</h3>
+
+    </div>
+    <button class="btn btn-info" (click)="closeModal()">Close</button>
+    <button *ngIf="deleteAnywayBTN" class="btn btn-danger" style="margin-left: 170px" (click)="deleteAnyway()">DELETE Anyway</button>
+ </div>
 </div>
 
 <router-outlet></router-outlet>

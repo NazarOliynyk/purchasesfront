@@ -10,6 +10,7 @@ import {MainServiceService} from '../../services/main-service.service';
 })
 export class LoginationComponent implements OnInit {
 
+  modal;
   user: User = new User();
   userToLogin: User = new User();
   responseLogination: string;
@@ -19,6 +20,9 @@ export class LoginationComponent implements OnInit {
               private mainService: MainServiceService) { }
 
   ngOnInit() {
+
+    this.modal = document.getElementById('modalMessage');
+
     this.activatedRoute.queryParams.subscribe((data) => {
       localStorage.clear();
       this.user = new User();
@@ -43,9 +47,19 @@ export class LoginationComponent implements OnInit {
         }
       },
       error1 => { console.log(error1);
-                  this.responseLogination = 'Access denied';
+                  this.showModal('Access denied');
       }
     );
 
   }
+
+  showModal(message: string) {
+    this.responseLogination = message;
+    this.modal.style.display = 'block';
+  }
+
+  closeModal() {
+    this.modal.style.display = 'none';
+  }
+
 }

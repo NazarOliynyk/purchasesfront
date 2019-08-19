@@ -1,12 +1,11 @@
-/*.flex-container {*/
-/*display: flex;*/
-/*flex-wrap: wrap;*/
-/*background-color: antiquewhite;*/
-/*}*/
 
-/*.flex-container > div {*/
-/*border: 1px solid salmon;*/
-/*margin: 5px;*/
-/*padding: 5px;*/
-/*font-size: 15px;*/
-/*}*/
+.bg{
+  background: lightpink;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  min-height: 770px;
+  border-bottom: 3px solid black;
+  padding-bottom: 20px;
+}

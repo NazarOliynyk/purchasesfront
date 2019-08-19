@@ -26,8 +26,17 @@
             (click)="saveUser(registerForm)" type="button">Sign In</button>
 
   </form>
-  <h3 style="color: blueviolet">{{responseRegistration}}</h3>
 </div>
 
+<div id="modalMessage" class="modal">
+  <div class="modal-response">
+    <div>
+      <h3>Server responded:</h3>
+      <hr>
+      <h3>{{responseRegistration}}</h3>
+    </div>
+    <button class="btn btn-info" (click)="closeModal()">Close</button>
+  </div>
+</div>
 
 <router-outlet></router-outlet>

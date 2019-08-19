@@ -3,13 +3,24 @@
 <nav class="navbar " style="background: sandybrown">
   <div class="container-fluid">
     <h2 *ngIf="showGreeting">Hello: {{user.username}}</h2>
-    <button (click)="all()" class="btn btn-primary">All</button>
-    <button (click)="add()" class="btn btn-primary">Add</button>
-    <button (click)="clear()" class="btn btn-primary">Clear</button>
-    <button (click)="report()" class="btn btn-primary">Report</button>
+    <button (click)="all()" class="btn btn-primary">All purchases</button>
+    <button (click)="add()" class="btn btn-primary">Add a new purchase</button>
+    <button (click)="clear()" class="btn btn-primary">Delete by date</button>
+    <button (click)="report()" class="btn btn-primary">Report by year and currency</button>
     <button [disabled]="showDeleteUserButton" (click)="deleteAccount()"
             class="btn btn-danger">Delete Account</button>
   </div>
 </nav>
+
+<div id="modalMessage" class="modal">
+  <div class="modal-response">
+    <div>
+      <h3>Do you really want to DELETE your ACCOUNT?</h3>
+
+    </div>
+    <button class="btn btn-info" (click)="closeModal()">Close</button>
+    <button class="btn btn-danger" style="margin-left: 170px" (click)="deleteAnyway()">DELETE Anyway</button>
+  </div>
+</div>
 
 <router-outlet></router-outlet>
