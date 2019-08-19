@@ -1,12 +1,12 @@
 
 .bg{
-  background: lightpink no-repeat center;
-  background-size: auto;
+  background: lightpink ;
+  background-size: cover;
+  position: absolute;
+  /*top: 0;*/
+  /*left: 0;*/
+  min-height: 100%;
+  width: 100%;
   border-bottom: 3px solid black;
   padding-bottom: 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
 }
