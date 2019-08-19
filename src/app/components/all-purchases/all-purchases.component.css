@@ -1,5 +1,43 @@
-.tableStyle{
-  width: 700px;
-  background: darkseagreen;
+/*.tableStyle{*/
+  /*width: 90%;*/
+  /*background: darkseagreen;*/
+  /*margin: 0 auto;*/
+/*}*/
+
+*{
+  box-sizing: border-box;
+}
+/*.column{*/
+  /*float: left;*/
+  /*width: 100%;*/
+  /*padding: 10px;*/
+  /*text-align: center;*/
+  /*background: #fefefe;*/
+  /*border: 1px solid black;*/
+  /*display: flex;*/
+  /*flex-wrap: wrap;*/
+/*}*/
+
+.row{
+  content: "";
+  display: table;
+  clear: both;
+  width: 90%;
   margin: 0 auto;
+}
+
+.flex-container {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  background: #fefefe;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 25%;
+  text-align: center;
 }
